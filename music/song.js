@@ -4,7 +4,7 @@ import ytdl from 'ytdl-core';
 import { YTSearcher } from 'ytsearcher';
 
 const searcher = new YTSearcher({
-    apiKey: process.env.YTAPI,
+    key: process.env.YTAPI,
     revealed: true
 });
 
