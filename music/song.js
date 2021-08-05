@@ -5,7 +5,7 @@ import { YTSearcher } from 'ytsearcher';
 
 const searcher = new YTSearcher({
     key: process.env.YTAPI,
-    revealed: true
+    revealKey: true
 });
 
 const queue = new Map();
