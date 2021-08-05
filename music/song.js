@@ -1,7 +1,7 @@
 import Discord from 'discord.js';
 import ytdl from 'ytdl-core';
 
-import { YTSearcher } from 'ytsearcher';
+const { YTSearcher } = require("ytsearcher");
 
 const searcher = new YTSearcher({
     key: process.env.YTAPI,
