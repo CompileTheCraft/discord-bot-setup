@@ -1,0 +1,10 @@
+module.exports = {
+  name: '',
+  aliases: [''],
+  permissions: [''],
+  cooldown: ,
+  desctiption: '',
+  execute(message, args, cmd, client, Discord, profileData) {
+    
+  }
+}

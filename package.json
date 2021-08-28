@@ -3,21 +3,24 @@
   "version": "1.0.0",
   "description": "multi-purpose discord bot",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "Heatwave Eli",
+  "author": "Devnamyte",
   "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
     "avconv": "^3.1.0",
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^4.4.0",
+    "images-scraper": "^6.3.0",
+    "minecraft-server-util": "^3.5.2",
+    "mongoose": "^5.13.6",
+    "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
     "yt-search": "^2.10.0",
     "ytdl-core": "^4.9.1"

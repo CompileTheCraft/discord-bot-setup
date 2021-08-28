@@ -1,24 +1,23 @@
-import Discord from 'discord.js';
-import dotenv from 'dotenv';
-dotenv.config();
+const Discord = require('discord.js');
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"], intents: ["GUILD_MEMBERS", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING", "GUILDS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INTEGRATIONS", "GUILD_INVITES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "GUILD_PRESENCES", "GUILD_VOICE_STATES", "GUILD_WEBHOOKS"] });
+client.commands = new Discord.Collection();
+client.events = new Discord.Collection();
 
-const prefix = "!pr";
-
-client.once("ready", () => {
-  console.log(`${client.user.tag} is online.`);
+['command_handler', 'event_handler'].forEach(handler => {
+  require(`./handlers/${handler}`)(client, Discord);
 });
 
-client.on("message", (message) => {
-  if(!message.content.startsWith(prefix) || message.author.bot) return;
-
-  const args = message.content.slice(prefix.length).split(/ +/);
-  const command = args.shift().toLowerCase();
-
-  if(command === "ping") {
-    message.channel.send('pong!');
-  }
-});
+mongoose.connect(process.env.MONGODB_SRV, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+}).then(() => {
+  console.log('Database is Ready!');
+}).catch((err) => {
+  console.log(err);
+})
 
 client.login(process.env.BOTTOKEN);
