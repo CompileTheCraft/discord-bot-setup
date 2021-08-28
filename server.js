@@ -1,10 +1,10 @@
-import express from 'express';
+const express = require("express");
 
 const server = express();
 const port = process.env.PORT || 8001;
 
 server.all("/", (req, res) => {
-  res.status(200).send("Slasher#8121 is running");
+  res.status(200).send("Slasher#8121 is running. Server Status: Ok");
 })
 
 function keepAlive() {
@@ -13,4 +13,4 @@ function keepAlive() {
   })
 }
 
-export default keepAlive;
+module.exports = keepAlive;
