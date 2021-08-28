@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_SRV, {
   console.log('Database is Ready!');
 }).catch((err) => {
   console.log(err);
-})
+});
 
 keepAlive();
 client.login(process.env.BOTTOKEN);
