@@ -4,7 +4,7 @@ const server = express();
 const port = process.env.PORT || 8001;
 
 server.all("/", (req, res) => {
-  res.status(200).send("Slasher#8121 is running. Server Status: Ok");
+  res.status(200).send("<button>Slasher#8121 is running</button>. Server Status: Ok");
 })
 
 function keepAlive() {
