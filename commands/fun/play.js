@@ -66,7 +66,9 @@ module.exports = {
         //Establish a connection and play the song with the vide_player function.
         try {
           const connection = await joinVoiceChannel({
-            channelId: voice_channel.id
+            channelId: voice_channel.id,
+            guildId: message.guild.id,
+            adapterCreator: message.guild.voiceAdapterCreator,
           });
           queue_constructor.connection = connection;
           video_player(message.guild, queue_constructor.songs[0], message, server_queue);
