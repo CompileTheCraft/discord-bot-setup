@@ -18,7 +18,7 @@ module.exports = {
         if (!mentionedMemberData) return message.channel.send("The user mentioned doesn't have a profile yet!. :x:");
 
         const mentionedMemberEmbed = new Discord.MessageEmbed()
-          .setColor("#121723")
+          .setColor("#23d2ef")
           .setAuthor(mentionedMember.user.tag, mentionedMember.user.displayAvatarURL({ dynamic: true }))
           .setTitle(`Your balance`)
           .setDescription(`**Coins** ${mentionedMemberData.coins} \n **Bank:** ${mentionedMemberData.bank}`)
@@ -33,8 +33,8 @@ module.exports = {
           .setDescription(`**Coins:** ${profileData.coins} \n **Bank:** ${profileData.bank}`)
           .setTimestamp()
 
-          message.channel.send({ embeds: [embed] });
-        }
+        message.channel.send({ embeds: [embed] });
+      }
     } catch (err) {
       console.log(err);
       message.channel.send("There was an error executing this command!. :x:");
