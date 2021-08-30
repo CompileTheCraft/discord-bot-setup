@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
+const { joinVoiceChannel } = require('@discordjs/voice');
 
 //Global queue for your bot. Every server will have a key and value pair in this map. { guild.id, queue_constructor{} }
 const queue = new Map();
@@ -64,7 +65,9 @@ module.exports = {
 
         //Establish a connection and play the song with the vide_player function.
         try {
-          const connection = await voice_channel.join();
+          const connection = await joinVoiceChannel({
+            channelId: voice_channel.id
+          });
           queue_constructor.connection = connection;
           video_player(message.guild, queue_constructor.songs[0], message, server_queue);
         } catch (err) {
@@ -82,7 +85,6 @@ module.exports = {
     else if (cmd === "stop") stop_song(message, server_queue);
     else if (cmd === "pause") pause_song(message, server_queue);
     else if (cmd === "resume") resume_song(message, server_queue);
-    else if (cmd === "loop") loop_song(message, server_queue, args);
   }
 
 }
@@ -99,14 +101,7 @@ const video_player = async (guild, song, message, server_queue) => {
   const stream = ytdl(song.url, { filter: 'audioonly', quality: 'highest' });
   song_queue.connection.play(stream, { seek: 0, volume: 0.5 })
     .on('finish', () => {
-      if (server_queue.loopone) {
-        play(guild, server_queue.songs[0]);
-      } else if (server_queue.loopall) {
-        server_queue.songs.push(server_queue.songs[0]);
-        server_queue.songs.shift();
-      } else {
-        server_queue.songs.shift();
-      }
+      play(guild, server_queue.songs[0]);
       song_queue.songs.shift();
       video_player(guild, song_queue.songs[0]);
     });
@@ -135,35 +130,4 @@ const pause_song = (message, server_queue) => {
 const resume_song = (message, server_queue) => {
   if (!message.member.voice.channel) return message.channel.send("You need to join the voice channel first! :x:");
   server_queue.connection.dispatcher.resume();
-}
-
-const loop_song = (message, server_queue, args) => {
-  if (!message.member.voice.channel) return message.channel.send("You need to join the voice channel first! :x:");
-
-  if (args[0] === "all") {
-    server_queue.loopall = !server_queue.loopall;
-    server_queue.loopone = false;
-
-    if (server_queue.loopall === true) {
-      message.channel.send("🔁 Loop all has been turned on!.")
-    } else {
-      message.channel.send(":x: Loop has been turned off!.")
-    }
-  } else if (args[0] === "one") {
-    server_queue.loopone = !server_queue.loopone;
-    server_queue.loopall = false;
-
-    if (server_queue.loopone === true) {
-      message.channel.send("🔂 Loop one has been turned on!.");
-    } else {
-      message.channel.send(":x: Loop all been turned off!.")
-    }
-  } else if (args[0] === "off") {
-    server_queue.loopall = false;
-    server_queue.loopone = false;
-
-    message.channel.send(":x: Loop has been turned off!.")
-  } else {
-    message.channel.send(`Please specify what loop you want. $loop <one/all/off>`)
-  }
 }
