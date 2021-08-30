@@ -96,12 +96,12 @@ const video_player = async (guild, song, message, server_queue) => {
 
   //If no song is left in the server queue. Leave the voice channel and delete the key and value pair from the global queue.
   if (!song) {
-    song_queue.voice_channel.leave();
+    song_queue.connection.destroy();
     queue.delete(guild.id);
     return;
   }
   const stream = ytdl(song.url, { filter: 'audioonly', quality: 'highest' });
-  song_queue.connection.play(stream, { seek: 0, volume: 0.5 })
+  song_queue.connection.subscribe(stream, { seek: 0, volume: 0.5 })
     .on('finish', () => {
       play(guild, server_queue.songs[0]);
       song_queue.songs.shift();
