@@ -45,7 +45,7 @@ module.exports = {
       }
       );
 
-      message.channel.send(`You worked as ${randomJob} and earned ${randomSalary}`);
+      message.channel.send(`You worked as ${jobs[randomJob]} and earned ${randomSalary}`);
     } catch (err) {
       console.log(err);
       message.channel.send("There was an error while you were working.");
