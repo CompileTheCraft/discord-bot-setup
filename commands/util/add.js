@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['subtract', 'multiply', 'power', 'divide'],
   permissions: ['SEND_MESSAGES'],
   cooldown: 5,
-  desctiption: 'this command will perform mathematical problems.',
+  description: 'this command will perform mathematical problems.',
   execute(message, args, cmd, client, Discord, profileData) {
     if (args.length >= 3) return message.channel.send("Only two values can be provided `$[operation] <num1> <num2>");
 

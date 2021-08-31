@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['wiki', 'wp'],
   permissions: ['SEND_MESSAGES'],
   cooldown: 10,
-  desctiption: 'this command shows the search results from wikipedia.',
+  description: 'this command shows the search results from wikipedia.',
   async execute(message, args, cmd, client, Discord, profileData) {
     let query = args.join(" ");
 

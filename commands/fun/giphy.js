@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['gif'],
   permissions: ['SEND_MESSAGES'],
   cooldown: 10,
-  desctiption: 'this command posts a random gif from the responses from the give query.',
+  description: 'this command posts a random gif from the responses from the give query.',
   async execute(message, args, cmd, client, Discord, profileData) {
     let keywords = 'exciting';
     keywords = args.join(" ");

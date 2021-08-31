@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['wk'],
   permissions: ['SEND_MESSAGES'],
   cooldown: 3600,
-  desctiption: 'this command lets you work as a temporary job and earn money.',
+  description: 'this command lets you work as a temporary job and earn money.',
   async execute(message, args, cmd, client, Discord, profileData) {
     if (!profileData) return message.channel.send("You don't have a profile yet!. :x:");
 

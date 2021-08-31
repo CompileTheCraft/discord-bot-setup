@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   permissions: ['SEND_MESSAGES', 'ADMINISTRATOR', 'MANAGE_GUILD'],
   cooldown: 60,
-  desctiption: 'this command irritates the person mentioned',
+  description: 'this command irritates the person mentioned',
   execute(message, args, cmd, client, Discord, profileData) {
     let mentionedMember = message.mentions.users.first();
     if (!mentionedMember) return msg.channel.send("You did not mention anyone.");

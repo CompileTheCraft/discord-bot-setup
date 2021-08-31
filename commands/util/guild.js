@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['gInfo'],
   permissions: ['SEND_MESSAGES'],
   cooldown: 10,
-  desctiption: 'this command shos the information about the guild.',
+  description: 'this command shos the information about the guild.',
   execute(message, args, cmd, client, Discord, profileData) {
     let { guild } = message;
 

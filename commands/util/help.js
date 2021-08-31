@@ -5,7 +5,7 @@ module.exports = {
   aliases: [],
   permissions: ['SEND_MESSAGES'],
   cooldown: 10,
-  desctiption: 'this command shows the list of all commands!.',
+  description: 'this command shows the list of all commands!.',
   execute(message, args, cmd, client, Discord, profileData) {
 
     try {
@@ -18,21 +18,21 @@ module.exports = {
       } else if (args[0] === "economy") {
         economy(message, client, Discord)
       } else {
-          const defaultEmbed = new Discord.MessageEmbed()
-            .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
-            .setColor("#23d2ef")
-            .setTitle("Help Commands!")
-            .setDescription(`**Prefix:** ${process.env.PREFIX}. Here all the commands according to their categories. Type ${process.env.PREFIX}help <category>`)
-            .addFields(
-              { name: "**Category:** Fun[fun]", value: "some fun commands for you to play with and roast some people ig!." },
-              { name: "**Category:** Moderation[moderation]", value: "this category is useful for mods, mods can kick/ban/warn people!." },
-              { name: "**Category:** Utility[util]", value: "this category has so many commands that is used in your day-to-day life!." },
-              { name: "**Caetgory:** Economy[economy]", value: "this category has many commands to earn coins!." },
-            )
-            .setFooter(`Requested By: ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
-            .setTimestamp()
+        const defaultEmbed = new Discord.MessageEmbed()
+          .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
+          .setColor("#23d2ef")
+          .setTitle("Help Commands!")
+          .setDescription(`**Prefix:** ${process.env.PREFIX}. Here all the commands according to their categories. Type ${process.env.PREFIX}help <category>`)
+          .addFields(
+            { name: "**Category:** Fun[fun]", value: "some fun commands for you to play with and roast some people ig!." },
+            { name: "**Category:** Moderation[moderation]", value: "this category is useful for mods, mods can kick/ban/warn people!." },
+            { name: "**Category:** Utility[util]", value: "this category has so many commands that is used in your day-to-day life!." },
+            { name: "**Caetgory:** Economy[economy]", value: "this category has many commands to earn coins!." },
+          )
+          .setFooter(`Requested By: ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
+          .setTimestamp()
 
-          message.channel.send({ embeds: [defaultEmbed] });
+        message.channel.send({ embeds: [defaultEmbed] });
       }
     } catch (err) {
       console.log(err);
@@ -115,8 +115,8 @@ function economy(message, client, Discord) {
       { name: `${process.env.PREFIX}withdraw[with, wd, wdraw]`, value: "this command lets you withdraw the amount of money from the bank" },
       { name: `${process.env.PREFIX}work[wk]`, value: "this command lets you work as a temporary job and earn money." }
     )
-  .setFooter(`Requested By: ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
-  .setTimestamp()
+    .setFooter(`Requested By: ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
+    .setTimestamp()
 
   message.channel.send({ embeds: [economyEmbed] });
 }

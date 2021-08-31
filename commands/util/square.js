@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['cube', 'cbrt', 'sqrt'],
   permissions: ['SEND_MESSAGES'],
   cooldown: 5,
-  desctiption: 'this command performs mathematical problems.',
+  description: 'this command performs mathematical problems.',
   execute(message, args, cmd, client, Discord, profileData) {
     if (args.length >= 2) return message.channel.send("Only 1 value can be provided `$[operation] <num1>");
 

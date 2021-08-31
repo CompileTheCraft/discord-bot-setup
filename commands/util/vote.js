@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   permissions: ['SEND_MESSAGES', 'MANAGE_GUILD'],
   cooldown: 30,
-  desctiption: 'this command lets the user have the topic and can have voting session in the guild.',
+  description: 'this command lets the user have the topic and can have voting session in the guild.',
   async execute(message, args, cmd, client, Discord, profileData) {
     const embed = new Discord.MessageEmbed()
       .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
