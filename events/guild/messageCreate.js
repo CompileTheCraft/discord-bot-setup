@@ -7,6 +7,7 @@ const cooldowns = new Map();
 
 module.exports = async (Discord, client, message) => {
   const prefix = process.env.PREFIX;
+  const devChannel = client.channels.cache.get('875634635957215262');
 
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -109,6 +110,8 @@ module.exports = async (Discord, client, message) => {
 
   try {
     command.execute(message, args, cmd, client, Discord, profileData);
+
+    devChannel.send(`**${command.name}** command has been used by **${message.author.tag}** in **${message.guild.name}**`);
   } catch (err) {
     message.reply("There was an error trying to execute this command!");
     console.log(err);
