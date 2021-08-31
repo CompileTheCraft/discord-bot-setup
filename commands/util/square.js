@@ -7,7 +7,7 @@ module.exports = {
   execute(message, args, cmd, client, Discord, profileData) {
     if (args.length >= 2) return message.channel.send("Only 1 value can be provided `$[operation] <num1>");
 
-    var num1 = parseInt(args[0]);
+    var num1 = parseFloat(args[0]);
 
     if (cmd === "cube") {
       cube(message, num1, Discord)

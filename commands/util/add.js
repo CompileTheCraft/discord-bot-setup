@@ -7,8 +7,8 @@ module.exports = {
   execute(message, args, cmd, client, Discord, profileData) {
     if (args.length >= 3) return message.channel.send("Only two values can be provided `$[operation] <num1> <num2>");
 
-    var num1 = parseInt(args[0]);
-    var num2 = parseInt(args[1]);
+    var num1 = parseFloat(args[0]);
+    var num2 = parseFloat(args[1]);
 
     if (cmd === "subtract") {
       subtract(message, num1, num2, Discord);
