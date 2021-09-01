@@ -97,13 +97,22 @@ module.exports = async (Discord, client, message) => {
     const expiration_time = time_stamps.get(message.author.id) + cooldown_amount;
 
     if (current_time < expiration_time) {
-      const time_left = (expiration_time - current_time) / 1000;
+      let time_left = (expiration_time - current_time) / 1000;
+      time_left = time_left.toFixed();
+
+      if (time_left >= 3600) {
+        time_left = time_left / 3600 + " hour[s]";
+      } else if (time_left >= 60) {
+        time_left = time_left / 60 + " minute[s]";
+      } else {
+        time_left = time_left;
+      }
 
       const timeLeftEmbed = new Discord.MessageEmbed()
         .setTitle("Please wait! :x:")
         .setColor("#23d2ef")
         .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
-        .setDescription(`\`${time_left.toFixed(1)}\`seconds before using ${command.name}`)
+        .setDescription(`\`${time_left}\` before using ${command.name}`)
         .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setTimestamp()
 
