@@ -24,7 +24,7 @@ module.exports = {
       }
       );
 
-      return message.reply(`Successfully, withdrawed **${depAmount}** coins from your bank.`);
+      return message.reply(`Successfully, withdrawed **${withAmount}** coins from your bank.`);
     } catch (err) {
       console.log(err);
     }
