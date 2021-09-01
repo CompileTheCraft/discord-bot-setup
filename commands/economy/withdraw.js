@@ -18,8 +18,8 @@ module.exports = {
           userID: message.author.id
         }, {
         $inc: {
-          coins: depAmount,
-          bank: -depAmount
+          coins: withAmount,
+          bank: -withAmount
         }
       }
       );

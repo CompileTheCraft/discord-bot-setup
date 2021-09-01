@@ -138,8 +138,6 @@ module.exports = async (Discord, client, message) => {
         { name: "Used By: ", value: message.author.tag },
         { name: "Command used in Channel: ", value: message.channel.name },
         { name: "Command used in Guild: ", value: message.guild.name },
-        { name: "Command used in Channel ID: ", value: message.channel.id },
-        { name: "Command used in Guild ID: ", value: message.guild.id },
       )
       .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
       .setTimestamp()
