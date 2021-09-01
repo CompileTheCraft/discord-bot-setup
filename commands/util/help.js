@@ -83,7 +83,7 @@ function util(message, client, Discord) {
     .setTitle("Help Commands! | Category: Utility")
     .setDescription(`**Prefix:** ${process.env.PREFIX}. Here all the commands according to utility category. Type ${process.env.PREFIX}help <category>`)
     .addFields(
-      { name: `${process.env.PREFIX}add[subtract, mulitply, divide, square, cube, sqrt, cbrt, power]` },
+      { name: `${process.env.PREFIX}add[subtract, mulitply, divide, square, cube, sqrt, cbrt, power]`, value: "these commands help to do mathematical problems." },
       { name: `${process.env.PREFIX}guild[gInfo]`, value: "this command shows the information about the guild." },
       { name: `${process.env.PREFIX}image[img, imsearch, imgs, images] <query>`, value: "this command sends an image to a discord text channel by searching it in google." },
       { name: `${process.env.PREFIX}massdm[md] <message>`, value: "this command sends message to everyone in the guild" },
