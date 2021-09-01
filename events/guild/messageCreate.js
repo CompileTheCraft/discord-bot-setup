@@ -98,7 +98,6 @@ module.exports = async (Discord, client, message) => {
 
     if (current_time < expiration_time) {
       let time_left = (expiration_time - current_time) / 1000;
-      time_left = time_left.toFixed();
 
       if (time_left >= 3600) {
         time_left = time_left / 3600 + " hour[s]";
@@ -107,6 +106,8 @@ module.exports = async (Discord, client, message) => {
       } else {
         time_left = time_left;
       }
+
+      time_left = time_left.toFixed();
 
       const timeLeftEmbed = new Discord.MessageEmbed()
         .setTitle("Please wait! :x:")
