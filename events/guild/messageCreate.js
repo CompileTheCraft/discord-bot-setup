@@ -99,7 +99,15 @@ module.exports = async (Discord, client, message) => {
     if (current_time < expiration_time) {
       const time_left = (expiration_time - current_time) / 1000;
 
-      return message.reply(`Please wait \`${time_left.toFixed(1)}\` more seconds before using ${command.name}`);
+      const timeLeftEmbed = new Discord.MessageEmbed()
+        .setTitle("Please wait! :x:")
+        .setColor("#23d2ef")
+        .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
+        .setDescription(`\`${time_left.toFixed(1)}\`seconds before using ${command.name}`)
+        .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+        .setTimestamp()
+
+      return message.reply({ embeds: [timeLeftEmbed] });
     }
   }
 
@@ -111,7 +119,23 @@ module.exports = async (Discord, client, message) => {
   try {
     command.execute(message, args, cmd, client, Discord, profileData);
 
-    devChannel.send(`**${command.name}** command has been used by **${message.author.tag}** in **${message.guild.name}**`);
+    const slasherLoggingEmbed = new Discord.MessageEmbed()
+      .setTitle("Slasher Command Logging")
+      .setColor("#23d2ef")
+      .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
+      .setDescription("Developers: Devnamyte#0001 and JUSTMRBHD#0001")
+      .addFields(
+        { name: "Command Used: ", value: command.name },
+        { name: "Used By: ", value: message.author.tag },
+        { name: "Command used in Channel: ", value: message.channel.name },
+        { name: "Command used in Guild: ", value: message.guild.name },
+        { name: "Command used in Channel ID: ", value: message.channel.id },
+        { name: "Command used in Guild ID: ", value: message.guild.id },
+      )
+      .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+      .setTimestamp()
+
+    devChannel.send({ embeds: [slasherLoggingEmbed] });
   } catch (err) {
     message.reply("There was an error trying to execute this command!");
     console.log(err);
