@@ -128,21 +128,7 @@ module.exports = async (Discord, client, message) => {
   try {
     command.execute(message, args, cmd, client, Discord, profileData);
 
-    const slasherLoggingEmbed = new Discord.MessageEmbed()
-      .setTitle("Slasher Command Logging")
-      .setColor("#23d2ef")
-      .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
-      .setDescription("Developers: Devnamyte#0001 and JUSTMRBHD#0001")
-      .addFields(
-        { name: "Command Used: ", value: command.name },
-        { name: "Used By: ", value: message.author.tag },
-        { name: "Command used in Channel: ", value: message.channel.name },
-        { name: "Command used in Guild: ", value: message.guild.name },
-      )
-      .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-      .setTimestamp()
-
-    devChannel.send({ embeds: [slasherLoggingEmbed] });
+    devChannel.send(`${message.author.displayAvatarURL({ dynamic: true })} has used **${command.name}** in channel **${message.channel.name}** in guild **${message.guild.name}**`)
   } catch (err) {
     message.reply("There was an error trying to execute this command!");
     console.log(err);
