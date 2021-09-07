@@ -19,7 +19,7 @@ module.exports = async (Discord, client, message) => {
         userID: message.author.id,
         serverID: message.guild.id,
         coins: 1000,
-        bank: 0
+        bank: 0,
       });
       profile.save();
     }
@@ -30,46 +30,49 @@ module.exports = async (Discord, client, message) => {
   const args = message.content.slice(prefix.length).split(/ +/);
   const cmd = args.shift().toLowerCase();
 
-  const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
+  const command =
+    client.commands.get(cmd) ||
+    client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
 
   const validPermissions = [
-    "CREATE_INSTANT_INVITE",
-    "KICK_MEMBERS",
-    "BAN_MEMBERS",
-    "ADMINISTRATOR",
-    "MANAGE_CHANNELS",
-    "MANAGE_GUILD",
-    "ADD_REACTIONS",
-    "VIEW_AUDIT_LOG",
-    "PRIORITY_SPEAKER",
-    "STREAM",
-    "VIEW_CHANNEL",
-    "SEND_MESSAGES",
-    "SEND_TTS_MESSAGES",
-    "MANAGE_MESSAGES",
-    "EMBED_LINKS",
-    "ATTACH_FILES",
-    "READ_MESSAGE_HISTORY",
-    "MENTION_EVERYONE",
-    "USE_EXTERNAL_EMOJIS",
-    "VIEW_GUILD_INSIGHTS",
-    "CONNECT",
-    "SPEAK",
-    "MUTE_MEMBERS",
-    "DEAFEN_MEMBERS",
-    "MOVE_MEMBERS",
-    "USE_VAD",
-    "CHANGE_NICKNAME",
-    "MANAGE_NICKNAMES",
-    "MANAGE_ROLES",
-    "MANAGE_WEBHOOKS",
-    "MANAGE_EMOJIS",
+    'CREATE_INSTANT_INVITE',
+    'KICK_MEMBERS',
+    'BAN_MEMBERS',
+    'ADMINISTRATOR',
+    'MANAGE_CHANNELS',
+    'MANAGE_GUILD',
+    'ADD_REACTIONS',
+    'VIEW_AUDIT_LOG',
+    'PRIORITY_SPEAKER',
+    'STREAM',
+    'VIEW_CHANNEL',
+    'SEND_MESSAGES',
+    'SEND_TTS_MESSAGES',
+    'MANAGE_MESSAGES',
+    'EMBED_LINKS',
+    'ATTACH_FILES',
+    'READ_MESSAGE_HISTORY',
+    'MENTION_EVERYONE',
+    'USE_EXTERNAL_EMOJIS',
+    'VIEW_GUILD_INSIGHTS',
+    'CONNECT',
+    'SPEAK',
+    'MUTE_MEMBERS',
+    'DEAFEN_MEMBERS',
+    'MOVE_MEMBERS',
+    'USE_VAD',
+    'CHANGE_NICKNAME',
+    'MANAGE_NICKNAMES',
+    'MANAGE_ROLES',
+    'MANAGE_WEBHOOKS',
+    'MANAGE_EMOJIS',
   ];
 
-  if (command == undefined) return message.reply("This command isn't available!. :x:");
+  if (command == undefined)
+    return message.reply("This command isn't available!. :x:");
 
   if (command.permissions.length) {
-    let invalidPerms = []
+    let invalidPerms = [];
     for (const perm of command.permissions) {
       if (!validPermissions.includes(perm)) {
         return console.log(`Invalid Permissions ${perm}`);
@@ -90,31 +93,38 @@ module.exports = async (Discord, client, message) => {
 
   const current_time = Date.now();
   const time_stamps = cooldowns.get(command.name);
-  const cooldown_amount = (command.cooldown) * 1000;
+  const cooldown_amount = command.cooldown * 1000;
 
   //If time_stamps has a key with the author's id then check the expiration time to send a message to a user.
   if (time_stamps.has(message.author.id)) {
-    const expiration_time = time_stamps.get(message.author.id) + cooldown_amount;
+    const expiration_time =
+      time_stamps.get(message.author.id) + cooldown_amount;
 
     if (current_time < expiration_time) {
       let time_left = (expiration_time - current_time) / 1000;
       time_left = time_left.toFixed();
 
       if (time_left >= 3600) {
-        time_left = time_left / 3600 + " hour[s]";
+        time_left = time_left / 3600 + ' hour[s]';
       } else if (time_left >= 60) {
-        time_left = time_left / 60 + " minute[s]";
+        time_left = time_left / 60 + ' minute[s]';
       } else {
         time_left = time_left;
       }
 
       const timeLeftEmbed = new Discord.MessageEmbed()
-        .setTitle("Please wait! :x:")
-        .setColor("#23d2ef")
-        .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
+        .setTitle('Please wait! :x:')
+        .setColor('#23d2ef')
+        .setAuthor(
+          client.user.tag,
+          client.user.displayAvatarURL({ dynamic: true })
+        )
         .setDescription(`\`${time_left}\` before using ${command.name}`)
-        .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-        .setTimestamp()
+        .setFooter(
+          message.author.tag,
+          message.author.displayAvatarURL({ dynamic: true })
+        )
+        .setTimestamp();
 
       return message.reply({ embeds: [timeLeftEmbed] });
     }
@@ -128,9 +138,15 @@ module.exports = async (Discord, client, message) => {
   try {
     command.execute(message, args, cmd, client, Discord, profileData);
 
+<<<<<<< HEAD
     devChannel.send(`${message.author.displayAvatarURL({ dynamic: true })} has used **${command.name}** in channel **${message.channel.name}** in guild **${message.guild.name}**`)
+=======
+    devChannel.send(
+      `\`${command.name}\` is used by **${message.author.tag}** in **${message.channel.name}** in guild **${message.guild.name}**`
+    );
+>>>>>>> update for slasher logging message
   } catch (err) {
-    message.reply("There was an error trying to execute this command!");
+    message.reply('There was an error trying to execute this command!');
     console.log(err);
   }
-}
+};
