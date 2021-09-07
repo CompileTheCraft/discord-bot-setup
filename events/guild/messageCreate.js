@@ -138,13 +138,9 @@ module.exports = async (Discord, client, message) => {
   try {
     command.execute(message, args, cmd, client, Discord, profileData);
 
-<<<<<<< HEAD
-    devChannel.send(`${message.author.displayAvatarURL({ dynamic: true })} has used **${command.name}** in channel **${message.channel.name}** in guild **${message.guild.name}**`)
-=======
     devChannel.send(
       `\`${command.name}\` is used by **${message.author.tag}** in **${message.channel.name}** in guild **${message.guild.name}**`
     );
->>>>>>> update for slasher logging message
   } catch (err) {
     message.reply('There was an error trying to execute this command!');
     console.log(err);
